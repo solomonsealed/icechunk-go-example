@@ -1,0 +1,47 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // The default environment is STAGING, so a bare `wrangler deploy` can never
+  // touch icechunk.geographyart.com. Production lives under `env.production`
+  // and is reached only through `npm run deploy:production`.
+  "name": "geographyart-icechunk-staging",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+
+  // public/ is the map; only /api/* runs the Go Worker.
+  "assets": { "directory": "./public", "run_worker_first": ["/api/*"] },
+
+  // No bindings: the Worker reads CTrees' public bucket anonymously.
+  "vars": {
+    "REPO_BUCKET": "ctrees-agb-100m-global",
+    "REPO_PREFIX": "agb_100m_global",
+    "REPO_REGION": "us-west-2",
+    "DEFAULT_REF": "ard-overviews",
+    "MAX_CELLS": "1024",
+    "WORKLOAD": "icechunk-staging.geographyart.com"
+  },
+
+  // A subdomain of geographyart.com, because the Cache API and fetch caching
+  // that keep chunks in each data centre do nothing on workers.dev. Routes
+  // are inherited, so env.production names its own.
+  "routes": [{ "pattern": "icechunk-staging.geographyart.com", "custom_domain": true }],
+  "workers_dev": true,
+
+  "env": {
+    "production": {
+      "name": "geographyart-icechunk",
+      "routes": [{ "pattern": "icechunk.geographyart.com", "custom_domain": true }],
+      "observability": { "enabled": true },
+      "assets": { "directory": "./public", "run_worker_first": ["/api/*"] },
+      "vars": {
+        "REPO_BUCKET": "ctrees-agb-100m-global",
+        "REPO_PREFIX": "agb_100m_global",
+        "REPO_REGION": "us-west-2",
+        "DEFAULT_REF": "ard-overviews",
+        "MAX_CELLS": "1024",
+        "WORKLOAD": "icechunk.geographyart.com"
+      }
+    }
+  }
+}

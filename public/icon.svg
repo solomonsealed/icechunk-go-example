@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Geography Art">
+  <!-- The header logo is a thin outlined ridgeline, which disappears at 16px.
+       This is the same silhouette solid-filled on the brand square so it still
+       reads as a mountain in a browser tab. -->
+  <rect width="32" height="32" rx="7.5" fill="#1f5a32"/>
+  <path d="M4 23.2 L11.6 11.4 L16.2 17.2 L21.4 8.2 L28 23.2 Z" fill="#ffffff"/>
+  <rect x="4" y="25.4" width="24" height="2.2" rx="1.1" fill="#ffffff" opacity="0.45"/>
+</svg>

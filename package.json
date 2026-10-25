@@ -1,0 +1,15 @@
+{
+  "name": "ctrees-icechunk-go-example",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "./build.sh",
+    "dev": "./build.sh && wrangler dev",
+    "deploy": "./build.sh && wrangler deploy",
+    "deploy:production": "./build.sh && wrangler deploy --env production",
+    "test": "go test ./biomass"
+  },
+  "devDependencies": {
+    "wrangler": "4.152.0"
+  }
+}

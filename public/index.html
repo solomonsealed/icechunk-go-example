@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Icechunk Biomass — Geography Art</title>
+<meta name="description" content="Draw a box anywhere on Earth and see where CTrees' 100-metre aboveground biomass fell or grew since 2000, read straight from their Icechunk repository by a Go Worker.">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.24.0/maplibre-gl.min.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div id="map" role="application" aria-label="Map. Drag a box to see where biomass changed."></div>
+<div class="tip" id="tip" hidden></div>
+
+<section class="card" aria-label="Biomass">
+  <div class="row">
+    <button type="button" class="draw" id="draw" aria-pressed="false" title="Draw a box (or shift-drag)" aria-label="Draw a box">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="3.5" width="11" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.2 1.6"/></svg>
+    </button>
+    <select id="ref" aria-label="Branch or tag"></select>
+  </div>
+
+  <p class="hint" id="hint">Drag a box to see where biomass fell or grew.</p>
+
+  <div id="result" hidden>
+    <div class="seg" role="group" aria-label="Show">
+      <button type="button" id="mode-change" aria-pressed="true">Change</button>
+      <button type="button" id="mode-biomass" aria-pressed="false">Biomass</button>
+    </div>
+    <p class="big"><span id="mean">–</span><small> t/ha</small> <span class="pm" id="pm"></span></p>
+    <p class="sub" id="total"></p>
+    <svg class="spark" id="spark" viewBox="0 0 240 44" preserveAspectRatio="none" role="img" aria-label="Mean biomass per year"></svg>
+    <div class="year">
+      <select id="from" aria-label="Change from year"></select>
+      <input type="range" id="year" min="2000" max="2025" step="1" value="2025" aria-label="Year">
+      <output id="year-out" for="year">2025</output>
+    </div>
+    <p class="legend" id="legend" title="Cells that changed by less than 10 t/ha are left clear"><span>loss</span><i></i><span>gain</span></p>
+    <p class="note" id="note" hidden></p>
+    <p class="meta"><span id="meta" aria-live="polite"></span> <span class="dl" id="dl"></span></p>
+  </div>
+
+  <p class="credit"><a href="https://registry.opendata.aws/ctrees-agb-100m-global/">CTrees</a> CC BY 4.0 · read with <a href="https://github.com/solomonsealed/icechunk-go">icechunk-go</a></p>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.24.0/maplibre-gl.min.js"></script>
+<script src="/app.js" type="module"></script>
+</body>
+</html>

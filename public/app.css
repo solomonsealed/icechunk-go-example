@@ -1,0 +1,89 @@
+/* Geography Art's palette (zarro/geographyart/assets/site.css), pared down. */
+:root {
+  --ink: #1b2620;
+  --ink-2: #34443b;
+  --muted: #5d6b63;
+  --line: #dfe5df;
+  --surface: #ffffff;
+  --canvas: #f6f7f3;
+  --evergreen: #1f5a32;
+  --bark: #7a4f2a;
+  --bad: #b42318;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; }
+body { font: 13px/1.45 var(--font); color: var(--ink-2); background: var(--canvas); -webkit-font-smoothing: antialiased; }
+a { color: var(--evergreen); text-underline-offset: 2px; }
+#map { position: fixed; inset: 0; }
+#map.drawing .maplibregl-canvas { cursor: crosshair; }
+
+.card {
+  position: fixed; left: 12px; bottom: 12px; width: 264px;
+  padding: 10px 12px 9px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(27,38,32,.06), 0 4px 16px rgba(27,38,32,.08);
+}
+.card p { margin: 0; }
+.row { display: flex; align-items: center; gap: 6px; }
+.draw {
+  display: grid; place-items: center; width: 30px; height: 28px; padding: 0;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink-2); cursor: pointer;
+}
+.draw svg { width: 16px; height: 16px; }
+.draw[aria-pressed="true"] { background: var(--evergreen); border-color: var(--evergreen); color: #fff; }
+select {
+  flex: 1; min-width: 0; height: 28px; padding: 0 6px; font: inherit; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 6px; background: var(--surface);
+}
+:focus-visible { outline: 2px solid var(--evergreen); outline-offset: 1px; }
+
+.hint { margin-top: 8px !important; color: var(--muted); }
+.seg { display: flex; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { flex: 1; height: 26px; padding: 0; border: 0; background: var(--surface); font: inherit; font-size: 12px; color: var(--muted); cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--canvas); color: var(--ink); font-weight: 600; }
+#result { margin-top: 8px; }
+.big { font-size: 26px; font-weight: 650; line-height: 1.1; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.big small { font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+#mean.loss { color: #c8442b; }
+#mean.gain { color: #2b7bb9; }
+.pm { font-size: 13px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+.sub { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.year { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.year input { flex: 1; min-width: 0; accent-color: var(--evergreen); }
+.year select { flex: 0 0 auto; height: 24px; padding: 0 2px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.year output { width: 34px; text-align: right; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.spark { display: block; width: 100%; height: 44px; margin-top: 8px; cursor: pointer; overflow: visible; }
+.spark .span { fill: var(--line); opacity: .55; }
+.spark .line { fill: none; stroke: var(--evergreen); stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+.legend { display: flex; align-items: center; gap: 6px; margin-top: 4px !important; font-size: 10.5px; color: var(--muted); }
+.legend i {
+  flex: 1; height: 6px; border-radius: 3px;
+  background: linear-gradient(to right, #c8442b 0%, #e9b4aa 45%, transparent 45%, transparent 55%, #aacae3 55%, #2b7bb9 100%);
+}
+.note { margin-top: 6px !important; padding: 5px 7px; font-size: 12px; color: var(--bark); background: #f3ebe2; border-radius: 6px; }
+.note.error { color: var(--bad); background: #fbeceb; }
+.meta { margin-top: 6px !important; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 8px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+#meta, .dl { white-space: nowrap; }
+.dl a { margin-left: 6px; }
+.credit { margin-top: 7px !important; padding-top: 6px; border-top: 1px solid var(--line); font-size: 10.5px; color: var(--muted); }
+.credit a { color: inherit; }
+
+.loading::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%;
+  background: var(--evergreen); animation: pulse 1s ease-in-out infinite; vertical-align: 1px;
+}
+@keyframes pulse { 50% { opacity: .25; } }
+
+.tip {
+  position: fixed; z-index: 2; pointer-events: none; padding: 2px 6px; border-radius: 4px;
+  font-size: 11px; color: #fff; background: rgba(27,38,32,.82); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .card { left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); width: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .loading::before { animation: none; } }
