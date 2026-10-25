@@ -3,10 +3,10 @@
 This guide covers four things:
 
 - what Icechunk is and why it suits distributed readers and writers;
-- how your Go port is put together;
+- how the Go port is put together;
 - what the CTrees biomass data actually holds;
-- what the "ARDs" Naomi showed you at CUGOS are.
-
+- what the CTrees provides are
+  
 Every fact about the CTrees repository below was read from the live repository on 2026-10-25 with `icechunk-go`. That covers branch tips, commit messages, attributes, shapes, chunk counts and byte sizes. External claims link to their sources. Where nobody has published the reason for something, the guide says it is inferring the reason.
 
 The working example of everything here is the map at
