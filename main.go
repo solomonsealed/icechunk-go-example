@@ -37,7 +37,7 @@ import (
 	"github.com/solomonsealed/icechunk-go/cfworker"
 	"github.com/solomonsealed/icechunk-go/storage"
 
-	"github.com/solomonsealed/ctrees-icechunk-go-example/biomass"
+	"github.com/solomonsealed/icechunk-go-example/biomass"
 )
 
 // The repository handle lives as long as the isolate, so decoded snapshots
