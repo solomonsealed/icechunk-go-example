@@ -1,4 +1,4 @@
-module github.com/solomonsealed/ctrees-icechunk-go-example
+module github.com/solomonsealed/icechunk-go-example
 
 go 1.25
 
